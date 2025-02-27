@@ -1,210 +1,74 @@
-# Markdown & MDX
+# Deploying to docio.dev
 
-Rspress supports not only Markdown but also [MDX](https://mdxjs.com/), a powerful way to develop content.
+Docio.dev is a streamlined hosting service specifically designed for Rspress-built documentation sites. It's perfect for open-source projects that need a simple and reliable way to host their documentation.
 
-## Markdown
+## Quick Start
 
-MDX is a superset of Markdown, which means you can write Markdown files as usual. For example:
+1. Create a new Rspress documentation site:
+   ```bash
+   # Using npm
+   npm create rspress@latest
+   
+   # Using yarn
+   yarn create rspress
+   
+   # Using pnpm
+   pnpm create rspress
+   ```
 
-```md
-# Hello world
-```
+2. Create a new GitHub repository:
+   - Go to your GitHub organization
+   - Create a new repository named exactly `docio`
+   - Push your documentation code to this repository
 
-## Use component
+3. Install the GitHub App:
+   - Visit [docio.dev GitHub App](https://github.com/apps/docio-dev)
+   - Click "Install"
+   - Select your organization
+   - Grant access to the `docio` repository
 
-When you want to use React components in Markdown files, you should name your files with `.mdx` extension. For example:
+## How it Works
 
-```mdx
-// docs/index.mdx
-import { CustomComponent } from './custom';
+Once set up, docio.dev will:
+- Monitor the default branch of your repository
+- Automatically build and deploy your site when changes are detected
+- Host your documentation at `https://[organization-name].docio.dev`
 
-# Hello world
+## Configuration
 
-<CustomComponent />
-```
+### Repository Requirements
+- Must be named exactly `docio`
+- Must be in the root of your organization
+- Must contain a valid Rspress project
 
-## Front matter
+### URL Formation
+Your documentation will be available at a URL based on your organization name:
+- Organization names are converted to lowercase
+- Special characters and spaces are replaced with hyphens
+- The final URL format is: `https://[slugified-org-name].docio.dev`
 
-You can add Front Matter at the beginning of your Markdown file, which is a YAML-formatted object that defines some metadata. For example:
+:::info Examples
+- Organization: `MyCompany` → `https://my-company.docio.dev`
+- Organization: `Hello_World` → `https://hello-world.docio.dev`
+- Organization: `Open Source Project` → `https://open-source-project.docio.dev`
 
-```yaml
----
-title: Hello world
----
-```
-
-> Note: By default, Rspress uses h1 headings as html headings.
-
-You can also access properties defined in Front Matter in the body, for example:
-
-```markdown
----
-title: Hello world
----
-
-# {frontmatter.title}
-```
-
-The previously defined properties will be passed to the component as `frontmatter` properties. So the final output will be:
-
-```html
-<h1>Hello world</h1>
-```
-
-## Custom container
-
-You can use the `:::` syntax to create custom containers and support custom titles. For example:
-
-**Input:**
-
-```markdown
-:::tip
-This is a `block` of type `tip`
 :::
 
-:::info
-This is a `block` of type `info`
-:::
+## Troubleshooting
 
-:::warning
-This is a `block` of type `warning`
-:::
-
-:::danger
-This is a `block` of type `danger`
-:::
-
-::: details
-This is a `block` of type `details`
-:::
-
-:::tip Custom Title
-This is a `block` of `Custom Title`
-:::
-
-:::tip{title="Custom Title"}
-This is a `block` of `Custom Title`
-:::
-```
-
-**Output:**
+If your site isn't deploying:
+1. Ensure your repository is named exactly `docio`
+2. Check that the GitHub App has proper access to the repository
+3. Verify your Rspress configuration is correct
+4. Look for build errors in your GitHub repository's Actions tab
 
 :::tip
-This is a `block` of type `tip`
+Remember to commit and push your changes to the default branch (usually `main` or `master`) to trigger a deployment
 :::
 
-:::info
-This is a `block` of type `info`
-:::
+## Support
 
-:::warning
-This is a `block` of type `warning`
-:::
-
-:::danger
-This is a `block` of type `danger`
-:::
-
-::: details
-This is a `block` of type `details`
-:::
-
-:::tip Custom Title
-This is a `block` of `Custom Title`
-:::
-
-:::tip{title="Custom Title"}
-This is a `block` of `Custom Title`
-:::
-
-## Code block
-
-### Basic usage
-
-You can use the \`\`\` syntax to create code blocks and support custom titles. For example:
-
-**Input:**
-
-````md
-```js
-console.log('Hello World');
-```
-
-```js title="hello.js"
-console.log('Hello World');
-```
-````
-
-**Output:**
-
-```js
-console.log('Hello World');
-```
-
-```js title="hello.js"
-console.log('Hello World');
-```
-
-### Show line numbers
-
-If you want to display line numbers, you can enable the `showLineNumbers` option in the config file:
-
-```ts title="rspress.config.ts"
-export default {
-  // ...
-  markdown: {
-    showLineNumbers: true,
-  },
-};
-```
-
-### Wrap code
-
-If you want to wrap long code line by default, you can enable the `defaultWrapCode` option in the config file:
-
-```ts title="rspress.config.ts"
-export default {
-  // ...
-  markdown: {
-    defaultWrapCode: true,
-  },
-};
-```
-
-### Line highlighting
-
-You can also apply line highlighting and code block title at the same time, for example:
-
-**Input:**
-
-````md
-```js title="hello.js" {1,3-5}
-console.log('Hello World');
-
-const a = 1;
-
-console.log(a);
-
-const b = 2;
-
-console.log(b);
-```
-````
-
-**Output:**
-
-```js title="hello.js" {1,3-5}
-console.log('Hello World');
-
-const a = 1;
-
-console.log(a);
-
-const b = 2;
-
-console.log(b);
-```
-
-## Rustify MDX compiler
-
-You can enable Rustify MDX compiler by following config:
+If you encounter any issues or need assistance:
+- Check the [Rspress documentation](https://rspress.dev/)
+- Open an issue in the [docio.dev repository](https://github.com/docio-dev/docio)
+- Contact support through GitHub discussions

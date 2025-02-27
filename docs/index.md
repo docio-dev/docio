@@ -2,22 +2,19 @@
 pageType: home
 
 hero:
-  name: My Site
-  text: A cool website!
-  tagline: This is the tagline
+  name: docio.dev
+  text: A simple Rspress hosting!
+  tagline: Simplest way to host your docs.
   actions:
     - theme: brand
       text: Quick Start
       link: /guide/
-    - theme: alt
-      text: GitHub
-      link: https://github.com/web-infra-dev/rspress
   image:
     src: /rspress-icon.png
     alt: Logo
 features:
-  - title: Blazing fast build speed
-    details: The core compilation module is based on the Rust front-end toolchain, providing a more ultimate development experience.
+  - title: Zero configuration
+    details: No need to configure anything, just write your docs and deploy.
     icon: 🏃🏻‍♀️
   - title: Support for MDX content writing
     details: MDX is a powerful way to write content, allowing you to use React components in Markdown.
@@ -28,10 +25,10 @@ features:
   - title: Simpler I18n solution
     details: With the built-in I18n solution, you can easily provide multi-language support for documents or components.
     icon: 🌍
-  - title: Static site generation
-    details: In production, it automatically builds into static HTML files, which can be easily deployed anywhere.
+  - title: Custom domain support (WIP)
+    details: You can easily set your own domain name.
     icon: 🌈
-  - title: Providing multiple custom capabilities
+  - title: Providing multiple custom capabilities (WIP)
     details: Through its extension mechanism, you can easily extend theme UI and build process.
     icon: 🔥
 ---
