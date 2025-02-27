@@ -1,3 +1,7 @@
+---
+sidebar: false
+---
+
 # Deploying to docio.dev
 
 Docio.dev is a streamlined hosting service specifically designed for Rspress-built documentation sites. It's perfect for open-source projects that need a simple and reliable way to host their documentation.
